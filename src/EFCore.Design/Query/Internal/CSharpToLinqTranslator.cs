@@ -423,6 +423,9 @@ public class CSharpToLinqTranslator : CSharpSyntaxVisitor<Expression>
             case IPropertySymbol s:
                 typeSymbol = s.Type;
                 break;
+            case IParameterSymbol s:
+                typeSymbol = s.Type;
+                break;
             case null:
                 throw new InvalidOperationException($"Identifier without symbol: {identifierName}");
             default:

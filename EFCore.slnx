@@ -2,9 +2,6 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".github/copilot-instructions.md" />
-    <File Path="azure-pipelines-internal-tests.yml" />
-    <File Path="azure-pipelines-public.yml" />
-    <File Path="azure-pipelines.yml" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Build.targets" />
     <File Path="Directory.Packages.props" />

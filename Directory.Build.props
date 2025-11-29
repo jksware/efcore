@@ -23,7 +23,7 @@
     <TargetRuntimeIdentifier Condition="'$(TargetRuntimeIdentifier)' == ''">$(TargetOsName)-$(TargetArchitecture)</TargetRuntimeIdentifier>
   </PropertyGroup>
 
-  <Import Project="Sdk.props" Sdk="Microsoft.DotNet.Arcade.Sdk" />
+  <!--<Import Project="Sdk.props" Sdk="Microsoft.DotNet.Arcade.Sdk" />-->
 
   <Import
     Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), AspNetCoreSettings.props))\AspNetCoreSettings.props"
