@@ -463,6 +463,19 @@ public class CSharpToLinqTranslator : CSharpSyntaxVisitor<Expression>
                             localSymbol.NullableAnnotation is NullableAnnotation.NotAnnotated)));
         }
 
+        if (symbol is IParameterSymbol parameterSymbol && _dataFlowsIn.TryGetValue(parameterSymbol, out var memberExpression1))
+        {
+            return memberExpression1
+                ?? (_dataFlowsIn[parameterSymbol] =
+                    Field(
+                        Constant(new FakeClosureFrameClass()),
+                        new FakeFieldInfo(
+                            typeof(FakeClosureFrameClass),
+                            ResolveType(parameterSymbol.Type),
+                            parameterSymbol.Name,
+                            parameterSymbol.NullableAnnotation is NullableAnnotation.NotAnnotated)));
+        }
+
         throw new InvalidOperationException(
             $"Encountered unknown identifier name '{identifierName}', which doesn't correspond to a lambda parameter or captured variable");
     }
