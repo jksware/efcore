@@ -1044,6 +1044,16 @@ _ = foo();
 """);
 
     [ConditionalFact]
+    public virtual Task DbContext_as_captured_parameter()
+        => Test(
+            """
+var blogs = await GetBlogs(context);
+
+static async Task<List<Blog>> GetBlogs(PrecompiledQueryContext parameterContext)
+    => await parameterContext.Blogs.ToListAsync();
+""");
+
+    [ConditionalFact]
     public virtual Task DbContext_as_method_invocation_result()
         => FullSourceTest(
             """
@@ -1071,6 +1081,17 @@ public static class TestContainer
     #endregion Different DbContext expressions
 
     #region Captured variable handling
+
+    [ConditionalFact]
+    public virtual Task Captured_method_parameter_in_lambda()
+        => Test(
+            """
+var outerId = 7;
+var blogs = await GetBlogsById(context, outerId);
+
+static async Task<List<Blog>> GetBlogsById(PrecompiledQueryContext parameterContext, int id)
+    => await parameterContext.Blogs.Where(b => b.Id == id).ToListAsync();
+""");
 
     [ConditionalFact]
     public virtual Task Two_captured_variables_in_same_lambda()
