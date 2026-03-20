@@ -61,5 +61,5 @@ public class SqlServerQueryCompilationContextFactory : IQueryCompilationContextF
     [Experimental(EFDiagnostics.PrecompiledQueryExperimental)]
     public virtual QueryCompilationContext CreatePrecompiled(bool async)
         => new SqlServerQueryCompilationContext(
-            Dependencies, RelationalDependencies, async, _sqlServerConnection.IsMultipleActiveResultSetsEnabled, precompiling: true);
+            Dependencies, RelationalDependencies, async, multipleActiveResultSetsEnabled: false, precompiling: true);
 }
